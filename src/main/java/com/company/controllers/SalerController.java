@@ -49,7 +49,7 @@ public class SalerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/Sellers/{id}")
+    @PutMapping("/sellers/{id}")
     public ResponseEntity<Object> putOfSaler(@PathVariable(value = "id") Integer id, @RequestBody Saler SalerChanged) throws ResourceNotFound {
         Optional<Saler> Saler = repository.findById(id);
         if (!Saler.isPresent()) throw new ResourceNotFound("Saler not found for id: " + id);

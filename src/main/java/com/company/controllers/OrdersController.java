@@ -19,26 +19,26 @@ public class OrdersController {
     @Autowired
     private OrdersRepository repository;
 
-    @GetMapping("/Orderss")
-    public List<Orders> getOrderss() {
+    @GetMapping("/orders")
+    public List<Orders> getOrders() {
         List<Orders> list = repository.findAll();
         return list;
     }
 
-    @GetMapping("/Orderss/{id}")
+    @GetMapping("/orders/{id}")
     public ResponseEntity<Object> getOrders(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Orders> country = repository.findById(id);
         if (!country.isPresent()) throw new ResourceNotFound("Orders not found for id: " + id);
         else return new ResponseEntity<>(country.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/Orderss")
+    @PostMapping("/orders")
     public Orders saveOrders(@RequestBody Orders Orders) {
         return repository.save(Orders);
     }
 
 
-    @DeleteMapping("/Orderss/{id}")
+    @DeleteMapping("/orders/{id}")
     public ResponseEntity<Object> deleteOrders(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Orders> Orders = repository.findById(id);
         if (!Orders.isPresent()) throw new ResourceNotFound("Orders not found for id: " + id);
@@ -49,7 +49,7 @@ public class OrdersController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/Orderss/{id}")
+    @PutMapping("/orders/{id}")
     public ResponseEntity<Object> putOfOrders(@PathVariable(value = "id") Integer id, @RequestBody Orders OrdersChanged) throws ResourceNotFound {
         Optional<Orders> Orders = repository.findById(id);
         if (!Orders.isPresent()) throw new ResourceNotFound("Orders not found for id: " + id);

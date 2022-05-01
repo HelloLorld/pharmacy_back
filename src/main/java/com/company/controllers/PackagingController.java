@@ -19,26 +19,26 @@ public class PackagingController {
     @Autowired
     private PackagingRepository repository;
 
-    @GetMapping("/Packagings")
+    @GetMapping("/packagings")
     public List<Packaging> getPackagings() {
         List<Packaging> list = repository.findAll();
         return list;
     }
 
-    @GetMapping("/Packagings/{id}")
+    @GetMapping("/packagings/{id}")
     public ResponseEntity<Object> getPackaging(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Packaging> country = repository.findById(id);
         if (!country.isPresent()) throw new ResourceNotFound("Packaging not found for id: " + id);
         else return new ResponseEntity<>(country.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/Packagings")
+    @PostMapping("/packagings")
     public Packaging savePackaging(@RequestBody Packaging Packaging) {
         return repository.save(Packaging);
     }
 
 
-    @DeleteMapping("/Packagings/{id}")
+    @DeleteMapping("/packagings/{id}")
     public ResponseEntity<Object> deletePackaging(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Packaging> Packaging = repository.findById(id);
         if (!Packaging.isPresent()) throw new ResourceNotFound("Packaging not found for id: " + id);
@@ -49,7 +49,7 @@ public class PackagingController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/Packagings/{id}")
+    @PutMapping("/packagings/{id}")
     public ResponseEntity<Object> putOfPackaging(@PathVariable(value = "id") Integer id, @RequestBody Packaging PackagingChanged) throws ResourceNotFound {
         Optional<Packaging> Packaging = repository.findById(id);
         if (!Packaging.isPresent()) throw new ResourceNotFound("Packaging not found for id: " + id);

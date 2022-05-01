@@ -19,26 +19,26 @@ public class ManufacturerContoller {
     @Autowired
     private ManufacturerRepository repository;
 
-    @GetMapping("/Manufacturers")
+    @GetMapping("/manufacturers")
     public List<Manufacturer> getManufacturers() {
         List<Manufacturer> list = repository.findAll();
         return list;
     }
 
-    @GetMapping("/Manufacturers/{id}")
+    @GetMapping("/manufacturers/{id}")
     public ResponseEntity<Object> getManufacturer(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Manufacturer> country = repository.findById(id);
         if (!country.isPresent()) throw new ResourceNotFound("Manufacturer not found for id: " + id);
         else return new ResponseEntity<>(country.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/Manufacturers")
+    @PostMapping("/manufacturers")
     public Manufacturer saveManufacturer(@RequestBody Manufacturer Manufacturer) {
         return repository.save(Manufacturer);
     }
 
 
-    @DeleteMapping("/Manufacturers/{id}")
+    @DeleteMapping("/manufacturers/{id}")
     public ResponseEntity<Object> deleteManufacturer(@PathVariable(value = "id") Integer id) throws ResourceNotFound {
         Optional<Manufacturer> Manufacturer = repository.findById(id);
         if (!Manufacturer.isPresent()) throw new ResourceNotFound("Manufacturer not found for id: " + id);
@@ -49,7 +49,7 @@ public class ManufacturerContoller {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/Manufacturers/{id}")
+    @PutMapping("/manufacturers/{id}")
     public ResponseEntity<Object> putOfManufacturer(@PathVariable(value = "id") Integer id, @RequestBody Manufacturer ManufacturerChanged) throws ResourceNotFound {
         Optional<Manufacturer> Manufacturer = repository.findById(id);
         if (!Manufacturer.isPresent()) throw new ResourceNotFound("Manufacturer not found for id: " + id);
