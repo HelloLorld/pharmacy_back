@@ -33,6 +33,10 @@ public class Medication {
     @JoinColumn(name = "fk_packaging", referencedColumnName = "id_packaging")
     private Packaging packaging;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_storage", referencedColumnName = "id_storage")
+    private StorageLocation storageLoc;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "application_medication",
